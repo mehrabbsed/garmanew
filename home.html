@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07111f">
+<title>گرما پلاس | تجربه‌ای فراتر از خرید</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+:root{
+    --bg: #07111f;
+    --surface: #0d1b2d;
+    --surface2: #12243a;
+    --text: #f1f6fc;
+    --muted: #94a9bf;
+    --primary: #42b9f5;
+    --primary2: #167ec1;
+    --gold: #d9b66d;
+    --border: rgba(255,255,255,.09);
+    --shadow: 0 20px 60px rgba(0,0,0,.25);
+    --card-shadow: 0 10px 30px rgba(0,0,0,.2);
+    --card-hover-shadow: 0 20px 50px rgba(66,185,245,.15);
+}
+body.light{
+    --bg: #f4f7fb;
+    --surface: #ffffff;
+    --surface2: #f8fafc;
+    --text: #0f172a;
+    --muted: #64748b;
+    --primary: #0284c7;
+    --primary2: #0ea5e9;
+    --gold: #b45309;
+    --border: rgba(15, 23, 42, 0.08);
+    --shadow: 0 20px 60px rgba(15,23,42,.06);
+    --card-shadow: 0 4px 20px rgba(15,23,42,.04);
+    --card-hover-shadow: 0 15px 40px rgba(2,132,199,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{
+    font-family:'Vazirmatn',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    overflow-x:hidden;
+    transition:background .4s,color .4s;
+}
+button,input,select{font-family:inherit;outline:none;border:none}
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+.container{width:min(1200px,92%);margin:auto}
+
+/* ===== HEADER ===== */
+header{
+    position:sticky; top:0; z-index:1000;
+    background:color-mix(in srgb, var(--bg) 85%, transparent);
+    border-bottom:1px solid var(--border);
+    backdrop-filter:blur(24px);
+    -webkit-backdrop-filter:blur(24px);
+    transition:background .4s, border-color .4s;
+}
+body.light header { background: rgba(255, 255, 255, 0.85); }
+.navbar{
+    min-height:80px;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:20px;
+}
+.logo{ display:flex; align-items:center; gap:12px; font-size:24px; font-weight:900; white-space:nowrap; }
+.logo-icon{
+    width:46px; height:46px; display:grid; place-items:center;
+    border-radius:14px; color:white;
+    background:linear-gradient(135deg, var(--primary), var(--primary2));
+    box-shadow:0 8px 25px rgba(14,165,233,.35);
+    transition:transform .3s;
+}
+.logo:hover .logo-icon{ transform:rotate(-10deg) scale(1.05); }
+.logo span{color:var(--primary)}
+.nav-links{ display:flex; align-items:center; gap:30px; color:var(--muted); font-size:15px; font-weight:600; }
+.nav-links a{ transition:color .3s; position:relative; }
+.nav-links a::after{
+    content:''; position:absolute; bottom:-5px; right:0;
+    width:0; height:2px; background:var(--primary); transition:width .3s;
+}
+.nav-links a:hover{ color:var(--primary); }
+.nav-links a:hover::after{ width:100%; }
+.nav-actions{ display:flex; align-items:center; gap:12px; }
+.icon-btn{
+    width:46px; height:46px; border:1px solid var(--border);
+    background:var(--surface); color:var(--text);
+    border-radius:50%; display:grid; place-items:center;
+    position:relative; font-size:18px; transition:all .3s;
+}
+.icon-btn:hover{ background:var(--primary); color:#fff; border-color:var(--primary); transform:translateY(-2px); box-shadow: 0 8px 20px rgba(14,165,233,.3); }
+.cart-count{
+    position:absolute; top:-5px; left:-5px;
+    background:var(--gold); color:#fff;
+    border-radius:50%; min-width:20px; height:20px;
+    display:grid; place-items:center;
+    font-size:11px; font-weight:900;
+}
+.mobile-menu{display:none}
+
+/* =========================================================
+   VIP HERO SLIDER  —  آماده برای عکس/آیکون/پس‌زمینه
+========================================================= */
+.vip-slider{
+    position:relative;
+    width:100%;
+    height:clamp(540px, 82vh, 780px);
+    overflow:hidden;
+    isolation:isolate;
+    background:var(--bg);
+    --accent:#ff8b37;
+    --accent-glow:rgba(255,100,20,.45);
+}
+.vip-slider.cold{ --accent:#45bfff; --accent-glow:rgba(56,189,248,.45); }
+.vip-slider.gold{ --accent:#d9b66d; --accent-glow:rgba(217,182,109,.45); }
+
+.vip-slider::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, transparent 55%, var(--bg) 100%);
+    pointer-events:none; z-index:3;
+}
+.vip-track{
+    position:absolute; inset:0;
+    display:flex;
+    transition:transform .9s cubic-bezier(.77,0,.18,1);
+    will-change:transform;
+}
+.vip-slide{
+    position:relative;
+    flex:0 0 100%;
+    height:100%;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* پس‌زمینه اسلاید */
+.vip-slide-bg{
+    position:absolute; inset:0;
+    background:radial-gradient(circle at 50% 40%, var(--accent-glow), transparent 60%), var(--surface);
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    transform:scale(1.15);
+    transition:transform 7s ease-out, opacity .6s;
+    z-index:0;
+}
+.vip-slide.is-active .vip-slide-bg{ transform:scale(1); }
+
+/* لایه تیره برای خوانایی */
+.vip-slide-overlay{
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.45));
+    z-index:1;
+    pointer-events:none;
+}
+body.light .vip-slide-overlay{
+    background:linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.35));
+}
+
+/* رینگ چرخان */
+.vip-ring{
+    position:absolute;
+    top:50%; left:50%;
+    width:min(520px, 78vw);
+    aspect-ratio:1;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+    background:conic-gradient(from 0deg, transparent, var(--accent-glow), transparent 45%);
+    filter:blur(30px);
+    animation:vipSpin 12s linear infinite;
+    opacity:.7;
+    z-index:2;
+    pointer-events:none;
+}
+
+/* ===== مدیا (عکس / آیکون / هر دو) ===== */
+.vip-visual{
+    position:relative; z-index:2;
+    display:flex; align-items:center; justify-content:center;
+    line-height:1;
+    text-align:center;
+    max-width:80%;
+    max-height:60%;
+}
+.vip-visual.is-icon{
+    font-size:clamp(120px, 20vw, 240px);
+    color:var(--accent);
+    filter:drop-shadow(0 0 70px var(--accent-glow));
+    animation:vipFloat 6s ease-in-out infinite;
+}
+.vip-visual.is-image{ animation:vipFloat 7s ease-in-out infinite; }
+.vip-visual.is-image img{
+    width:auto;
+    height:auto;
+    max-width:min(420px, 70vw);
+    max-height:min(420px, 50vh);
+    object-fit:contain;
+    border-radius:24px;
+    filter:drop-shadow(0 20px 60px rgba(0,0,0,.5));
+    display:block;
+}
+.vip-visual.is-both{ flex-direction:column; gap:16px; animation:vipFloat 7s ease-in-out infinite; }
+.vip-visual.is-both .vip-visual-icon{
+    font-size:clamp(70px, 12vw, 130px);
+    color:var(--accent);
+    filter:drop-shadow(0 0 50px var(--accent-glow));
+}
+.vip-visual.is-both img{
+    max-width:min(260px, 55vw);
+    max-height:min(260px, 32vh);
+    border-radius:24px;
+    filter:drop-shadow(0 20px 50px rgba(0,0,0,.5));
+}
+
+/* محتوا */
+.vip-content{
+    position:absolute; z-index:4;
+    bottom:clamp(70px, 14vh, 150px);
+    right:0; left:0;
+    text-align:center;
+    padding:0 24px;
+    max-width:880px;
+    margin:auto;
+}
+.vip-tag{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:8px 20px;
+    border-radius:50px;
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.2);
+    color:var(--accent);
+    font-size:12px; font-weight:800; letter-spacing:2px;
+    margin-bottom:18px;
+    backdrop-filter:blur(10px);
+}
+.vip-title{
+    font-size:clamp(26px, 4.5vw, 54px);
+    font-weight:900;
+    line-height:1.35;
+    margin-bottom:16px;
+    color:var(--text);
+}
+.vip-title span{ color:var(--accent); transition:color .5s; }
+.vip-desc{
+    font-size:clamp(13px, 1.5vw, 16px);
+    line-height:2.1;
+    color:var(--muted);
+    max-width:600px;
+    margin:0 auto 28px;
+}
+.vip-cta{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:14px 32px;
+    border-radius:50px;
+    background:linear-gradient(135deg, var(--accent), var(--primary2));
+    color:#fff;
+    font-size:14px; font-weight:800;
+    box-shadow:0 12px 30px var(--accent-glow);
+    transition:transform .3s, box-shadow .3s;
+}
+.vip-cta:hover{ transform:translateY(-3px); box-shadow:0 18px 40px var(--accent-glow); }
+
+/* انیمیشن ورود محتوا */
+.vip-tag, .vip-title, .vip-desc, .vip-cta{
+    opacity:0;
+    transform:translateY(30px);
+    transition:opacity .7s ease, transform .7s ease;
+}
+.vip-slide.is-active .vip-tag{ opacity:1; transform:translateY(0); transition-delay:.15s; }
+.vip-slide.is-active .vip-title{ opacity:1; transform:translateY(0); transition-delay:.3s; }
+.vip-slide.is-active .vip-desc{ opacity:1; transform:translateY(0); transition-delay:.45s; }
+.vip-slide.is-active .vip-cta{ opacity:1; transform:translateY(0); transition-delay:.6s; }
+
+/* فلش‌ها */
+.vip-arrow{
+    position:absolute; top:50%; z-index:6;
+    transform:translateY(-50%);
+    width:52px; height:52px;
+    border-radius:50%;
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.2);
+    color:var(--text);
+    display:grid; place-items:center;
+    font-size:18px;
+    backdrop-filter:blur(12px);
+    transition:all .3s;
+    cursor:pointer;
+}
+.vip-arrow:hover{
+    background:var(--primary); color:#fff; border-color:var(--primary);
+    transform:translateY(-50%) scale(1.08);
+}
+.vip-arrow.prev{ right:20px; }
+.vip-arrow.next{ left:20px; }
+
+/* Dots */
+.vip-dots{
+    position:absolute; bottom:28px; left:0; right:0;
+    z-index:6;
+    display:flex; justify-content:center; gap:10px;
+}
+.vip-dot{
+    width:10px; height:10px; border-radius:50%;
+    background:rgba(255,255,255,.3);
+    border:none; cursor:pointer;
+    transition:all .3s; padding:0;
+}
+.vip-dot.is-active{
+    width:34px;
+    border-radius:10px;
+    background:var(--accent);
+    box-shadow:0 0 15px var(--accent-glow);
+}
+
+/* Progress */
+.vip-progress{
+    position:absolute; top:0; left:0; right:0;
+    height:3px; z-index:7;
+    background:rgba(255,255,255,.05);
+}
+.vip-progress span{
+    display:block; height:100%; width:0;
+    background:linear-gradient(90deg, var(--accent), var(--gold));
+    transition:width .1s linear;
+}
+
+/* Counter */
+.vip-counter{
+    position:absolute; bottom:28px; right:24px; z-index:6;
+    display:flex; align-items:center; gap:6px;
+    font-size:13px; font-weight:800;
+    color:var(--muted);
+    letter-spacing:1px;
+    user-select:none;
+}
+.vip-counter strong{
+    color:var(--accent);
+    font-size:20px;
+    transition:color .5s;
+}
+
+@keyframes vipFloat{
+    0%,100%{ transform:translateY(0) rotate(0); }
+    50%{ transform:translateY(-18px) rotate(-2deg); }
+}
+@keyframes vipSpin{
+    to{ transform:translate(-50%,-50%) rotate(360deg); }
+}
+
+/* ===== HERO ===== */
+.hero{padding:80px 0 60px}
+.hero-content{
+    display:grid; grid-template-columns:1.1fr .9fr;
+    align-items:center; gap:50px; min-height:400px;
+}
+.hero-label{
+    display:inline-flex; align-items:center; gap:9px;
+    background:rgba(66,185,245,.1); color:var(--primary);
+    border:1px solid rgba(66,185,245,.2);
+    padding:10px 18px; border-radius:50px;
+    font-size:13px; font-weight:700; margin-bottom:24px;
+}
+.hero h1{
+    font-size:clamp(34px, 5vw, 58px);
+    line-height:1.5; font-weight:900; margin-bottom:20px;
+}
+.hero h1 span{ color:var(--primary); }
+.hero-description{
+    color:var(--muted); line-height:2.2;
+    max-width:540px; font-size:15px;
+}
+.hero-buttons{ display:flex; gap:15px; margin-top:35px; flex-wrap:wrap; }
+.btn{
+    padding:15px 28px; border-radius:50px;
+    border:1px solid var(--border);
+    font-size:14px; font-weight:800;
+    transition:all .3s;
+    display:inline-flex; align-items:center; justify-content:center; gap:10px;
+}
+.btn-primary{
+    background:linear-gradient(135deg, var(--primary), var(--primary2));
+    color:#fff; border:none;
+    box-shadow:0 10px 25px rgba(14,165,233,.3);
+}
+.btn-primary:hover{ transform:translateY(-3px); box-shadow:0 15px 35px rgba(14,165,233,.5); }
+.btn-outline{ background:var(--surface); color:var(--text); }
+.btn-outline:hover{ border-color:var(--primary); color:var(--primary); }
+.hero-visual{
+    height:380px; border-radius:32px;
+    background: radial-gradient(circle at 50% 40%, rgba(56,189,248,.15), transparent 60%), var(--surface);
+    border:1px solid var(--border); position:relative;
+    display:grid; place-items:center; overflow:hidden;
+    box-shadow:var(--card-shadow);
+}
+body.light .hero-visual { background: radial-gradient(circle at 50% 40%, rgba(2,132,199,.08), transparent 60%), var(--surface); }
+.hero-visual::before, .hero-visual::after{
+    content:""; position:absolute; border:1px solid rgba(56,189,248,.2); border-radius:50%;
+}
+.hero-visual::before{ width:300px; height:300px; }
+.hero-visual::after{ width:220px; height:220px; }
+.hero-machine{
+    position:relative; z-index:2; font-size:150px; color:var(--primary);
+    filter:drop-shadow(0 0 40px rgba(56,189,248,.4));
+    animation:float 5s infinite ease-in-out;
+}
+@keyframes float{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+.floating-card{
+    position:absolute; z-index:3; background:var(--surface);
+    border:1px solid var(--border); padding:15px 20px;
+    border-radius:16px; box-shadow:var(--card-shadow); font-size:13px;
+    backdrop-filter:blur(10px);
+}
+.floating-card.one{ top:40px; right:30px; }
+.floating-card.two{ bottom:35px; left:25px; }
+.floating-card strong{ display:block; color:var(--primary); font-size:17px; margin-bottom:4px; }
+
+/* ===== FEATURES ===== */
+.features{
+    display:grid; grid-template-columns:repeat(4,1fr);
+    gap:20px; margin:20px auto 90px;
+}
+.feature{
+    display:flex; align-items:center; gap:16px;
+    background:var(--surface); padding:24px;
+    border:1px solid var(--border); border-radius:20px;
+    transition:all .3s; box-shadow: var(--card-shadow);
+}
+.feature:hover{ transform:translateY(-5px); border-color:var(--primary); box-shadow:var(--card-hover-shadow); }
+.feature i{ font-size:26px; color:var(--primary); }
+.feature strong{ display:block; font-size:14px; margin-bottom:4px; }
+.feature small{ color:var(--muted); font-size:12px; }
+
+/* ===== CATALOG ===== */
+.catalog{ padding-bottom:100px; }
+.section-header{ display:flex; justify-content:space-between; align-items:end; margin-bottom:35px; gap:15px; }
+.section-header h2{ font-size:30px; font-weight:900; }
+.section-header p{ color:var(--muted); font-size:14px; margin-top:8px; }
+.section-tag{ color:var(--gold); font-size:12px; font-weight:800; margin-bottom:10px; letter-spacing:1px; }
+.filters{ display:flex; gap:15px; margin-bottom:30px; flex-wrap:wrap; }
+.search-box{ flex:1; min-width:240px; position:relative; }
+.search-box i{ position:absolute; right:20px; top:50%; transform:translateY(-50%); color:var(--muted); }
+.search-box input, .filters select{
+    width:100%; height:52px; background:var(--surface);
+    color:var(--text); border:1px solid var(--border);
+    border-radius:14px; padding:0 50px 0 20px;
+    font-size:14px; transition:border-color .3s;
+    box-shadow: var(--card-shadow);
+}
+.filters select{ width:200px; padding:0 20px; cursor:pointer; }
+.search-box input:focus, .filters select:focus{ border-color:var(--primary); }
+.categories{
+    display:flex; gap:12px; margin-bottom:35px;
+    overflow-x:auto; padding-bottom:10px;
+    scrollbar-width:none;
+}
+.categories::-webkit-scrollbar{ display:none; }
+.category-btn{
+    flex-shrink:0; padding:12px 24px; background:var(--surface);
+    border:1px solid var(--border); color:var(--muted);
+    border-radius:50px; font-size:13px; font-weight:700; transition:all .3s;
+    box-shadow: var(--card-shadow);
+}
+.category-btn:hover, .category-btn.active{
+    background:var(--primary); color:#fff; border-color:var(--primary);
+    box-shadow:0 8px 20px rgba(56,189,248,.3);
+}
+.products{
+    display:grid; grid-template-columns:repeat(4, minmax(0,1fr));
+    gap:24px;
+}
+.product{
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:24px; padding:16px; transition:all .4s;
+    display:flex; flex-direction:column; box-shadow: var(--card-shadow);
+}
+.product:hover{ transform:translateY(-8px); border-color:var(--primary); box-shadow:var(--card-hover-shadow); }
+.product-image{
+    height:200px; border-radius:18px; background:var(--surface2);
+    display:grid; place-items:center; position:relative; overflow:hidden;
+}
+.product-image i{
+    font-size:85px; color:var(--primary);
+    filter:drop-shadow(0 10px 20px rgba(56,189,248,.3));
+    transition:transform .4s;
+}
+.product:hover .product-image i{ transform:scale(1.1); }
+.product-badge{
+    position:absolute; top:15px; right:15px;
+    background:rgba(251,191,36,.15); color:var(--gold);
+    border:1px solid rgba(251,191,36,.3);
+    border-radius:30px; padding:6px 14px; font-size:11px; font-weight:800;
+}
+body.light .product-badge { background: rgba(217,119,6,.1); border-color: rgba(217,119,6,.2); }
+.product-info{ padding:20px 8px 8px; flex:1; display:flex; flex-direction:column; }
+.product-brand{ color:var(--primary); font-size:12px; font-weight:700; margin-bottom:8px; }
+.product h3{ font-size:16px; font-weight:800; margin-bottom:10px; line-height:1.5; flex:1; }
+.product-desc{ color:var(--muted); font-size:12px; line-height:1.8; margin-bottom:15px; }
+.product-bottom{ display:flex; justify-content:space-between; align-items:center; gap:10px; margin-top:auto; }
+.price{ font-size:16px; font-weight:900; }
+.price small{ display:block; font-size:11px; color:var(--muted); font-weight:500; margin-top:4px; }
+.add-btn{
+    width:44px; height:44px; background:var(--primary); color:#fff;
+    border:none; border-radius:14px; font-size:18px; transition:all .3s;
+}
+.add-btn:hover{ background:var(--primary2); transform:scale(1.08); box-shadow:0 8px 20px rgba(14,165,233,.4); }
+.empty{ grid-column:1/-1; text-align:center; padding:60px 15px; color:var(--muted); font-size:16px; }
+
+/* ===== PROMO ===== */
+.promo{
+    margin-bottom:90px; background: linear-gradient(135deg, rgba(56,189,248,.1), rgba(15,23,42,.5));
+    border:1px solid var(--border); border-radius:32px; padding:50px;
+    display:flex; align-items:center; justify-content:space-between; gap:30px;
+    box-shadow:var(--card-shadow);
+}
+body.light .promo { background: linear-gradient(135deg, rgba(2,132,199,.05), rgba(255,255,255,1)); }
+.promo h2{ font-size:30px; font-weight:900; margin-bottom:15px; }
+.promo p{ color:var(--muted); font-size:15px; line-height:2; }
+.promo-icon{ font-size:90px; color:var(--primary); opacity:.8; }
+
+/* ===== FOOTER ===== */
+footer{ background:var(--surface); border-top:1px solid var(--border); padding:70px 0 30px; }
+.footer-grid{ display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:40px; }
+.footer-about p{ color:var(--muted); font-size:14px; line-height:2.2; margin-top:20px; max-width:320px; }
+.footer-col h4{ margin-bottom:20px; font-size:16px; font-weight:800; }
+.footer-col a{ display:block; color:var(--muted); font-size:14px; margin:14px 0; transition:color .3s; }
+.footer-col a:hover{ color:var(--primary); padding-right:5px; }
+.copyright{ border-top:1px solid var(--border); margin-top:50px; padding-top:25px; text-align:center; color:var(--muted); font-size:13px; }
+
+/* ===== CART DRAWER ===== */
+.overlay{
+    position:fixed; inset:0; background:rgba(0,0,0,.7); backdrop-filter:blur(8px);
+    z-index:2000; opacity:0; visibility:hidden; transition:all .4s;
+}
+.overlay.show{ opacity:1; visibility:visible; }
+.cart-drawer{
+    position:fixed; z-index:2001; top:0; left:-460px; width:min(440px,100%);
+    height:100dvh; background:var(--surface); border-right:1px solid var(--border);
+    transition:left .4s cubic-bezier(.16,1,.3,1); padding:30px; display:flex; flex-direction:column;
+    box-shadow:10px 0 50px rgba(0,0,0,.5);
+}
+.cart-drawer.show{ left:0; }
+.cart-header{ display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); padding-bottom:20px; }
+.cart-header h3{ font-size:20px; font-weight:900; display:flex; gap:10px; }
+.close-cart{ background:var(--surface2); color:var(--text); border:none; width:40px; height:40px; border-radius:50%; transition:all .3s; }
+.close-cart:hover{ background:#ef4444; color:#fff; transform:rotate(90deg); }
+.cart-items{ flex:1; overflow-y:auto; padding:20px 0; }
+.cart-item{ display:flex; align-items:center; gap:15px; border-bottom:1px solid var(--border); padding:18px 0; }
+.cart-item-icon{ width:65px; height:65px; background:var(--surface2); display:grid; place-items:center; border-radius:16px; color:var(--primary); font-size:28px; }
+.cart-item-info{ flex:1; min-width:0; }
+.cart-item-info strong{ display:block; font-size:15px; font-weight:800; margin-bottom:5px; }
+.cart-item-info small{ color:var(--primary); font-size:13px; font-weight:700; }
+.quantity{ display:flex; align-items:center; gap:12px; margin-top:10px; }
+.quantity button{ width:30px; height:30px; border:none; background:var(--surface2); color:var(--text); border-radius:8px; font-size:16px; transition:all .2s; }
+.quantity button:hover{ background:var(--primary); color:#fff; }
+.quantity span{ font-weight:800; font-size:14px; }
+.cart-total{ border-top:1px solid var(--border); padding-top:25px; }
+.total-row{ display:flex; justify-content:space-between; margin-bottom:20px; font-weight:900; font-size:18px; }
+.total-row span:last-child{ color:var(--primary); }
+.checkout{ width:100%; padding:16px; font-size:16px; }
+
+/* ===== MOBILE NAV ===== */
+.mobile-nav{ display:none; }
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+    .products{ grid-template-columns:repeat(3,minmax(0,1fr)); }
+    .features{ grid-template-columns:repeat(2,1fr); }
+    .hero-content{ gap:30px; }
+    .footer-grid{ grid-template-columns:repeat(2,1fr); }
+}
+@media(max-width:768px){
+    .navbar{ min-height:70px; }
+    .nav-links{ display:none; }
+    .mobile-menu{ display:block; }
+    .logo{ font-size:20px; }
+    .logo-icon{ width:42px; height:42px; }
+
+    .vip-slider{ height:clamp(520px, 88vh, 700px); }
+    .vip-arrow{ width:42px; height:42px; font-size:15px; }
+    .vip-arrow.prev{ right:10px; }
+    .vip-arrow.next{ left:10px; }
+    .vip-content{ bottom:80px; padding:0 16px; }
+    .vip-dots{ bottom:18px; }
+    .vip-counter{ bottom:18px; right:16px; font-size:11px; }
+    .vip-counter strong{ font-size:16px; }
+    .vip-visual.is-icon{ font-size:clamp(100px, 32vw, 180px); }
+    .vip-visual.is-image img{ max-width:min(280px, 75vw); max-height:min(280px, 35vh); }
+    .vip-visual.is-both img{ max-width:min(200px, 55vw); max-height:min(200px, 28vh); }
+
+    .hero{ padding:50px 0; }
+    .hero-content{ grid-template-columns:1fr; gap:40px; text-align:center; }
+    .hero-buttons{ justify-content:center; }
+    .hero-visual{ height:300px; }
+    .hero-machine{ font-size:120px; }
+
+    .features{ gap:12px; margin-bottom:60px; }
+    .feature{ padding:18px; }
+
+    .products{ grid-template-columns:repeat(2,minmax(0,1fr)); gap:15px; }
+    .product{ padding:12px; }
+    .product-image{ height:160px; }
+    .product-image i{ font-size:65px; }
+    .product h3{ font-size:14px; }
+    .product-bottom{ flex-direction:column; align-items:stretch; gap:10px; }
+    .add-btn{ width:100%; height:40px; }
+
+    .section-header h2{ font-size:24px; }
+    .filters{ flex-direction:column; }
+    .search-box{ width:100%; }
+    .filters select{ width:100%; }
+
+    .promo{ padding:30px; flex-direction:column; text-align:center; }
+    .promo-icon{ display:none; }
+
+    .footer-grid{ grid-template-columns:1fr; gap:30px; }
+
+    .mobile-nav{
+        display:flex; position:fixed; bottom:0; right:0; left:0;
+        min-height:70px; z-index:1000;
+        background:var(--surface); border-top:1px solid var(--border);
+        justify-content:space-around; align-items:center;
+        padding:8px 0 env(safe-area-inset-bottom);
+        backdrop-filter:blur(10px);
+    }
+    .mobile-nav a{ display:grid; gap:5px; place-items:center; color:var(--muted); font-size:11px; font-weight:600; }
+    .mobile-nav i{ font-size:20px; }
+    .mobile-nav a:hover{ color:var(--primary); }
+    body{ padding-bottom:75px; }
+    footer{ padding-bottom:30px; }
+}
+@media(max-width:380px){
+    .hero h1{ font-size:30px; }
+    .products{ gap:10px; }
+    .product-image{ height:130px; }
+    .product h3{ font-size:12px; }
+    .vip-arrow{ display:none; }
+    .vip-title{ font-size:24px; }
+}
+@media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{ animation-duration:.01ms!important; animation-iteration-count:1!important; scroll-behavior:auto!important; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="container navbar">
+        <a href="#" class="logo">
+            <div class="logo-icon"><i class="fa-solid fa-fire-flame-curved"></i></div>
+            گرما <span>پلاس</span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="#">صفحه اصلی</a>
+            <a href="#products">محصولات</a>
+            <a href="#services">خدمات ما</a>
+            <a href="#contact">ارتباط با ما</a>
+        </nav>
+
+        <div class="nav-actions">
+            <button class="icon-btn" id="themeBtn" aria-label="تغییر تم">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+            <button class="icon-btn" id="cartBtn" aria-label="سبد خرید">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="cart-count" id="cartCount">۰</span>
+            </button>
+            <button class="icon-btn mobile-menu" onclick="document.getElementById('products').scrollIntoView()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main>
+
+<!-- =========================================================
+     VIP HERO SLIDER
+========================================================= -->
+<section class="vip-slider" id="vipSlider" aria-roledescription="carousel" aria-label="اسلایدر معرفی گرما پلاس">
+    <div class="vip-progress"><span id="vipProgress"></span></div>
+    <div class="vip-track" id="vipTrack"></div>
+
+    <button class="vip-arrow prev" id="vipPrev" aria-label="اسلاید قبلی">
+        <i class="fa-solid fa-chevron-right"></i>
+    </button>
+    <button class="vip-arrow next" id="vipNext" aria-label="اسلاید بعدی">
+        <i class="fa-solid fa-chevron-left"></i>
+    </button>
+
+    <div class="vip-dots" id="vipDots" role="tablist" aria-label="ناوبری اسلایدها"></div>
+
+    <div class="vip-counter" aria-hidden="true">
+        <strong id="vipCurrent">۱</strong>
+        <span>/</span>
+        <span id="vipTotal">۳</span>
+    </div>
+</section>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container hero-content">
+        <div>
+            <div class="hero-label">
+                <i class="fa-solid fa-crown"></i>
+                تجربه خرید متفاوت با گرما پلاس
+            </div>
+            <h1>
+                گرمایی مطمئن،<br>
+                <span>انتخابی هوشمندانه</span>
+            </h1>
+            <p class="hero-description">
+                مجموعه‌ای از بهترین تجهیزات گرمایشی و سرمایشی،
+                با طراحی مدرن، کیفیت بالا و خدمات تخصصی.
+                آسایش خانه شما اولویت ماست.
+            </p>
+            <div class="hero-buttons">
+                <a href="#products" class="btn btn-primary">
+                    مشاهده محصولات
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+                <a href="#services" class="btn btn-outline">خدمات ما</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="floating-card one">
+                <strong>کیفیت ممتاز</strong>
+                انتخابی برای سال‌ها
+            </div>
+            <i class="fa-solid fa-temperature-high hero-machine"></i>
+            <div class="floating-card two">
+                <strong>گرما پلاس</strong>
+                آسایش هوشمند
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="container features" id="services">
+    <div class="feature">
+        <i class="fa-solid fa-truck-fast"></i>
+        <div>
+            <strong>ارسال سریع</strong>
+            <small>تحویل مطمئن سفارش</small>
+        </div>
+    </div>
+    <div class="feature">
+        <i class="fa-solid fa-shield-halved"></i>
+        <div>
+            <strong>ضمانت کیفیت</strong>
+            <small>خرید با اطمینان</small>
+        </div>
+    </div>
+    <div class="feature">
+        <i class="fa-solid fa-headset"></i>
+        <div>
+            <strong>پشتیبانی تخصصی</strong>
+            <small>مشاوره پیش از خرید</small>
+        </div>
+    </div>
+    <div class="feature">
+        <i class="fa-solid fa-medal"></i>
+        <div>
+            <strong>محصولات منتخب</strong>
+            <small>کیفیت در اولویت</small>
+        </div>
+    </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="catalog container" id="products">
+    <div class="section-header">
+        <div>
+            <div class="section-tag">COLLECTION / 2026</div>
+            <h2>محصولات منتخب</h2>
+            <p>انتخابی حرفه‌ای برای آسایش بیشتر</p>
+        </div>
+    </div>
+
+    <div class="filters">
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="search" id="searchInput" placeholder="جستجوی نام محصول یا برند...">
+        </div>
+        <select id="sortSelect">
+            <option value="default">مرتب‌سازی پیش‌فرض</option>
+            <option value="cheap">ارزان‌ترین</option>
+            <option value="expensive">گران‌ترین</option>
+            <option value="name">نام محصول</option>
+        </select>
+    </div>
+
+    <div class="categories">
+        <button class="category-btn active" data-category="all">همه محصولات</button>
+        <button class="category-btn" data-category="heater">بخاری</button>
+        <button class="category-btn" data-category="boiler">پکیج</button>
+        <button class="category-btn" data-category="radiator">رادیاتور</button>
+        <button class="category-btn" data-category="cooling">سرمایش</button>
+    </div>
+
+    <div class="products" id="productsGrid"></div>
+</section>
+
+<!-- PROMO -->
+<section class="container">
+    <div class="promo">
+        <div>
+            <div class="section-tag">GARMAPLUS PREMIUM</div>
+            <h2>آسایش خانه، با انتخاب درست آغاز می‌شود.</h2>
+            <p>
+                برای انتخاب بهترین تجهیزات متناسب با فضای خود،
+                از خدمات مشاوره تخصصی استفاده کنید.
+            </p>
+            <a href="#contact" class="btn btn-primary" style="margin-top:25px">
+                ارتباط با کارشناسان
+            </a>
+        </div>
+        <i class="fa-solid fa-house-chimney-window promo-icon"></i>
+    </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer id="contact">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-about">
+                <a href="#" class="logo">
+                    <div class="logo-icon"><i class="fa-solid fa-fire-flame-curved"></i></div>
+                    گرما <span>پلاس</span>
+                </a>
+                <p>
+                    گرما پلاس؛ انتخابی مطمئن برای تهیه تجهیزات
+                    گرمایشی و سرمایشی. کیفیت، تخصص و رضایت مشتری
+                    در اولویت ما قرار دارد.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4>دسترسی سریع</h4>
+                <a href="#">صفحه اصلی</a>
+                <a href="#products">محصولات</a>
+                <a href="#services">خدمات</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>راهنمای خرید</h4>
+                <a href="#">شرایط خرید</a>
+                <a href="#">قوانین و مقررات</a>
+                <a href="#">پرسش‌های متداول</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>ارتباط با ما</h4>
+                <a href="#"><i class="fa-solid fa-phone"></i> شماره تماس: .....</a>
+                <a href="#"><i class="fa-solid fa-location-dot"></i> آدرس: مازندران</a>
+                <a href="#"><i class="fa-brands fa-instagram"></i> اینستاگرام</a>
+            </div>
+        </div>
+
+        <div class="copyright">
+            © ۱۴۰۵ تمامی حقوق برای <strong>گرما پلاس</strong> محفوظ است.
+        </div>
+    </div>
+</footer>
+
+<!-- MOBILE NAV -->
+<nav class="mobile-nav">
+    <a href="#"><i class="fa-solid fa-house"></i>خانه</a>
+    <a href="#products"><i class="fa-solid fa-store"></i>محصولات</a>
+    <a href="#" onclick="openCart();return false"><i class="fa-solid fa-bag-shopping"></i>سبد خرید</a>
+    <a href="#contact"><i class="fa-solid fa-headset"></i>تماس</a>
+</nav>
+
+<!-- CART DRAWER -->
+<div class="overlay" id="overlay"></div>
+<aside class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+        <h3><i class="fa-solid fa-bag-shopping" style="color:var(--primary)"></i> سبد خرید</h3>
+        <button class="close-cart" id="closeCart">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-total">
+        <div class="total-row">
+            <span>مبلغ نهایی</span>
+            <span id="totalPrice">۰ تومان</span>
+        </div>
+        <button class="btn btn-primary checkout" onclick="checkout()">
+            ثبت و ادامه فرایند خرید
+        </button>
+    </div>
+</aside>
+
+<script>
+/* =========================================================
+   VIP SLIDER  —  داینامیک
+   ---------------------------------------------------------
+   برای هر اسلاید می‌توانید این فیلدها را بدهید:
+     theme      : "hot" | "cold" | "gold"
+     tagIcon    : نام آیکون FontAwesome
+     tagText    : متن تگ بالا
+     title      : عنوان (HTML مجاز است)
+     desc       : توضیح
+     ctaText    : متن دکمه
+     ctaHref    : لینک دکمه
+     image      : "path/to/image.jpg"        ← عکس (اختیاری)
+     icon       : "fa-fire"                  ← آیکون (اختیاری)
+     bgImage    : "path/to/background.jpg"   ← پس‌زمینه (اختیاری)
+     imageFit   : "contain" | "cover"
+   ---------------------------------------------------------
+   هر اسلاید می‌تواند فقط عکس، فقط آیکون، یا هر دو داشته باشد.
+========================================================= */
+const VIP_SLIDES = [
+    {
+        id: 1,
+        theme: "hot",
+        tagIcon: "fa-fire",
+        tagText: "THE POWER OF HEAT",
+        title: "قدرت گرما را <span>احساس کن</span>",
+        desc: "شروع یک تجربه متفاوت؛ جایی که آسایش و تکنولوژی در کنار هم قرار می‌گیرند.",
+        ctaText: "مشاهده محصولات",
+        ctaHref: "#products",
+        icon: "fa-fire-flame-curved",
+        // image: "images/slide-heat.png",
+        // bgImage: "images/bg-heat.jpg",
+    },
+    {
+        id: 2,
+        theme: "cold",
+        tagIcon: "fa-snowflake",
+        tagText: "THE POWER OF COOLING",
+        title: "خنکای <span>هوشمند</span> را تجربه کن",
+        desc: "با سیستم‌های سرمایشی مدرن، حتی در گرم‌ترین روزها خنکی و آرامش را تجربه کنید.",
+        ctaText: "مشاهده سرمایشی‌ها",
+        ctaHref: "#products",
+        icon: "fa-snowflake",
+        // image: "images/slide-cold.png",
+        // bgImage: "images/bg-cold.jpg",
+    },
+   
+];
+
+/* --- DOM --- */
+const vipSlider   = document.getElementById("vipSlider");
+const vipTrack    = document.getElementById("vipTrack");
+const vipDotsWrap = document.getElementById("vipDots");
+const vipPrev     = document.getElementById("vipPrev");
+const vipNext     = document.getElementById("vipNext");
+const vipProgress = document.getElementById("vipProgress");
+const vipCurrent  = document.getElementById("vipCurrent");
+const vipTotalEl  = document.getElementById("vipTotal");
+
+let vipIndex = 0;
+let vipProgressRAF = null;
+let vipStartTime = 0;
+const VIP_DURATION = 6000;
+
+const toFaDigits = n => new Intl.NumberFormat("fa-IR").format(n);
+
+/* --- ساخت مدیا (عکس / آیکون / هر دو) --- */
+function buildVipMedia(slide){
+    const hasImg  = !!slide.image;
+    const hasIcon = !!slide.icon;
+    if(!hasImg && !hasIcon) return "";
+
+    if(hasImg && hasIcon){
+        return `
+            <div class="vip-visual is-both">
+                <img src="${slide.image}" alt="" loading="lazy"
+                     style="${slide.imageFit === 'cover' ? 'object-fit:cover;' : ''}">
+                <i class="fa-solid ${slide.icon} vip-visual-icon" aria-hidden="true"></i>
+            </div>
+        `;
+    }
+    if(hasImg){
+        return `
+            <div class="vip-visual is-image">
+                <img src="${slide.image}" alt="" loading="lazy"
+                     style="${slide.imageFit === 'cover' ? 'object-fit:cover;' : ''}">
+            </div>
+        `;
+    }
+    return `
+        <div class="vip-visual is-icon">
+            <i class="fa-solid ${slide.icon}" aria-hidden="true"></i>
+        </div>
+    `;
+}
+
+/* --- ساخت یک اسلاید --- */
+function buildVipSlide(slide, i){
+    const el = document.createElement("div");
+    el.className = "vip-slide";
+    el.dataset.theme = slide.theme || "hot";
+    el.dataset.index = i;
+    el.setAttribute("role", "group");
+    el.setAttribute("aria-roledescription", "slide");
+    el.setAttribute("aria-label", `${i + 1} از ${VIP_SLIDES.length}`);
+
+    const bgStyle = slide.bgImage
+        ? `style="background-image:url('${slide.bgImage}');"`
+        : "";
+
+    el.innerHTML = `
+        <div class="vip-slide-bg" ${bgStyle}></div>
+        <div class="vip-slide-overlay"></div>
+        <div class="vip-ring" aria-hidden="true"></div>
+        ${buildVipMedia(slide)}
+        <div class="vip-content">
+            ${(slide.tagText || slide.tagIcon) ? `
+                <div class="vip-tag">
+                    ${slide.tagIcon ? `<i class="fa-solid ${slide.tagIcon}" aria-hidden="true"></i>` : ""}
+                    ${slide.tagText || ""}
+                </div>
+            ` : ""}
+            ${slide.title ? `<h2 class="vip-title">${slide.title}</h2>` : ""}
+            ${slide.desc ? `<p class="vip-desc">${slide.desc}</p>` : ""}
+            ${slide.ctaText ? `
+                <a href="${slide.ctaHref || '#'}" class="vip-cta">
+                    ${slide.ctaText}
+                    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                </a>
+            ` : ""}
+        </div>
+    `;
+    return el;
+}
+
+/* --- رندر کلی --- */
+function renderVipSlider(){
+    vipTrack.innerHTML = "";
+    vipDotsWrap.innerHTML = "";
+
+    if(!VIP_SLIDES.length){
+        vipSlider.style.display = "none";
+        return;
+    }
+    vipSlider.style.display = "";
+
+    VIP_SLIDES.forEach((slide, i) => {
+        vipTrack.appendChild(buildVipSlide(slide, i));
+        const dot = document.createElement("button");
+        dot.className = "vip-dot";
+        dot.setAttribute("role", "tab");
+        dot.setAttribute("aria-label", `رفتن به اسلاید ${i + 1}`);
+        dot.addEventListener("click", () => goToVipSlide(i, true));
+        vipDotsWrap.appendChild(dot);
+    });
+
+    vipTotalEl.textContent = toFaDigits(VIP_SLIDES.length);
+    updateVipSlider(true);
+}
+
+/* --- به‌روزرسانی --- */
+function updateVipSlider(instant = false){
+    vipTrack.style.transition = instant ? "none" : "";
+    vipTrack.style.transform = `translateX(${vipIndex * 100}%)`;
+
+    [...vipTrack.children].forEach((slide, i) => {
+        slide.classList.toggle("is-active", i === vipIndex);
+    });
+
+    const currentTheme = VIP_SLIDES[vipIndex]?.theme || "hot";
+    vipSlider.classList.remove("cold", "gold");
+    if(currentTheme === "cold") vipSlider.classList.add("cold");
+    if(currentTheme === "gold") vipSlider.classList.add("gold");
+
+    [...vipDotsWrap.children].forEach((dot, i) => {
+        dot.classList.toggle("is-active", i === vipIndex);
+        dot.setAttribute("aria-selected", i === vipIndex ? "true" : "false");
+    });
+
+    vipCurrent.textContent = toFaDigits(vipIndex + 1);
+    resetVipProgress();
+}
+
+function goToVipSlide(i, userTriggered = false){
+    if(!VIP_SLIDES.length) return;
+    vipIndex = (i + VIP_SLIDES.length) % VIP_SLIDES.length;
+    updateVipSlider(false);
+    if(userTriggered) restartVipAutoplay();
+}
+function nextVip(){ goToVipSlide(vipIndex + 1); }
+function prevVip(){ goToVipSlide(vipIndex - 1); }
+
+/* --- Autoplay + Progress --- */
+function tickVipProgress(now){
+    if(!vipStartTime) vipStartTime = now;
+    const elapsed = now - vipStartTime;
+    const p = Math.min(1, elapsed / VIP_DURATION);
+    vipProgress.style.width = (p * 100) + "%";
+    if(p >= 1){
+        nextVip();
+        vipStartTime = 0;
+    }
+    vipProgressRAF = requestAnimationFrame(tickVipProgress);
+}
+function resetVipProgress(){
+    cancelAnimationFrame(vipProgressRAF);
+    vipProgress.style.width = "0%";
+    vipStartTime = 0;
+    vipProgressRAF = requestAnimationFrame(tickVipProgress);
+}
+function stopVipAutoplay(){
+    cancelAnimationFrame(vipProgressRAF);
+    vipProgressRAF = null;
+}
+function restartVipAutoplay(){
+    stopVipAutoplay();
+    vipStartTime = 0;
+    vipProgressRAF = requestAnimationFrame(tickVipProgress);
+}
+function startVipAutoplay(){ restartVipAutoplay(); }
+
+/* --- Events --- */
+vipNext.addEventListener("click", nextVip);
+vipPrev.addEventListener("click", prevVip);
+vipSlider.addEventListener("mouseenter", stopVipAutoplay);
+vipSlider.addEventListener("mouseleave", () => {
+    vipStartTime = 0;
+    vipProgressRAF = requestAnimationFrame(tickVipProgress);
+});
+
+vipSlider.setAttribute("tabindex", "0");
+vipSlider.addEventListener("keydown", e => {
+    if(e.key === "ArrowLeft") nextVip();
+    if(e.key === "ArrowRight") prevVip();
+});
+
+let touchStartX = 0, touchEndX = 0;
+vipSlider.addEventListener("touchstart", e => {
+    touchStartX = e.changedTouches[0].screenX;
+    stopVipAutoplay();
+}, { passive: true });
+vipSlider.addEventListener("touchend", e => {
+    touchEndX = e.changedTouches[0].screenX;
+    const diff = touchStartX - touchEndX;
+    if(Math.abs(diff) > 50){
+        if(diff > 0) nextVip(); else prevVip();
+    }
+    vipStartTime = 0;
+    vipProgressRAF = requestAnimationFrame(tickVipProgress);
+}, { passive: true });
+
+document.addEventListener("visibilitychange", () => {
+    if(document.hidden) stopVipAutoplay();
+    else { vipStartTime = 0; vipProgressRAF = requestAnimationFrame(tickVipProgress); }
+});
+
+/* --- API عمومی --- */
+window.VipSlider = {
+    setSlides(newSlides){
+        VIP_SLIDES.length = 0;
+        newSlides.forEach(s => VIP_SLIDES.push(s));
+        vipIndex = 0;
+        renderVipSlider();
+        startVipAutoplay();
+    },
+    addSlide(slide){
+        VIP_SLIDES.push(slide);
+        renderVipSlider();
+    },
+    removeSlide(id){
+        const idx = VIP_SLIDES.findIndex(s => s.id === id);
+        if(idx > -1) VIP_SLIDES.splice(idx, 1);
+        if(vipIndex >= VIP_SLIDES.length) vipIndex = 0;
+        renderVipSlider();
+    },
+    next(){ nextVip(); },
+    prev(){ prevVip(); },
+    goTo(i){ goToVipSlide(i, true); },
+    pause(){ stopVipAutoplay(); },
+    play(){ startVipAutoplay(); },
+    get slides(){ return VIP_SLIDES; }
+};
+
+/* --- راه‌اندازی --- */
+renderVipSlider();
+startVipAutoplay();
+
+/* =========================
+   PRODUCTS DATA
+========================= */
+const products = [
+    { id:1, name:"بخاری گازی هوشمند", brand:"گرمایشی", category:"heater", price:8500000, icon:"fa-fire", description:"طراحی مدرن، راندمان حرارتی مناسب" },
+    { id:2, name:"پکیج دیواری دیجیتال", brand:"سیستم گرمایشی", category:"boiler", price:18500000, icon:"fa-temperature-high", description:"سیستم کنترل هوشمند دما" },
+    { id:3, name:"رادیاتور پنلی", brand:"تجهیزات گرمایشی", category:"radiator", price:3200000, icon:"fa-grip", description:"انتقال حرارت یکنواخت" },
+    { id:4, name:"کولر گازی اینورتر", brand:"سیستم سرمایشی", category:"cooling", price:29000000, icon:"fa-snowflake", description:"مصرف انرژی بهینه" },
+    { id:5, name:"بخاری برقی مدرن", brand:"گرمایشی", category:"heater", price:4500000, icon:"fa-bolt", description:"مناسب فضاهای کوچک" },
+    { id:6, name:"پکیج زمینی", brand:"سیستم گرمایشی", category:"boiler", price:35000000, icon:"fa-house", description:"مناسب ساختمان‌های بزرگ" },
+    { id:7, name:"رادیاتور حوله خشک‌کن", brand:"تجهیزات گرمایشی", category:"radiator", price:5800000, icon:"fa-water", description:"طراحی زیبا و کاربردی" },
+    { id:8, name:"فن کویل سقفی", brand:"سیستم سرمایشی", category:"cooling", price:12500000, icon:"fa-fan", description:"توزیع مناسب هوای محیط" }
+];
+
+let selectedCategory = "all";
+let cart = [];
+try {
+    cart = JSON.parse(localStorage.getItem("garma_cart") || "[]");
+    if(!Array.isArray(cart)) cart = [];
+} catch(error) { cart = []; }
+
+const money = number => new Intl.NumberFormat("fa-IR").format(number) + " تومان";
+
+/* =========================
+   RENDER PRODUCTS
+========================= */
+function renderProducts(){
+    const search = document.getElementById("searchInput").value.trim().toLowerCase();
+    const sort = document.getElementById("sortSelect").value;
+
+    let result = products.filter(product => {
+        const matchesCategory = selectedCategory === "all" || product.category === selectedCategory;
+        const matchesSearch = product.name.toLowerCase().includes(search) || product.brand.toLowerCase().includes(search);
+        return matchesCategory && matchesSearch;
+    });
+
+    if(sort === "cheap") result.sort((a,b) => a.price - b.price);
+    if(sort === "expensive") result.sort((a,b) => b.price - a.price);
+    if(sort === "name") result.sort((a,b) => a.name.localeCompare(b.name, "fa"));
+
+    const grid = document.getElementById("productsGrid");
+    if(!result.length){
+        grid.innerHTML = `<div class="empty"><i class="fa-solid fa-box-open" style="font-size:40px;margin-bottom:15px;display:block"></i>محصولی پیدا نشد.</div>`;
+        return;
+    }
+
+    grid.innerHTML = result.map(product => `
+        <article class="product">
+            <div class="product-image">
+                <span class="product-badge">منتخب</span>
+                <i class="fa-solid ${product.icon}"></i>
+            </div>
+            <div class="product-info">
+                <span class="product-brand">${product.brand}</span>
+                <h3>${product.name}</h3>
+                <p class="product-desc">${product.description}</p>
+                <div class="product-bottom">
+                    <div class="price">
+                        ${money(product.price)}
+                        <small>قیمت نمونه</small>
+                    </div>
+                    <button class="add-btn" onclick="addToCart(${product.id})" aria-label="افزودن به سبد">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </article>
+    `).join("");
+}
+
+/* =========================
+   FILTERS
+========================= */
+document.querySelectorAll(".category-btn").forEach(button => {
+    button.addEventListener("click", () => {
+        document.querySelectorAll(".category-btn").forEach(item => item.classList.remove("active"));
+        button.classList.add("active");
+        selectedCategory = button.dataset.category;
+        renderProducts();
+    });
+});
+document.getElementById("searchInput").addEventListener("input", renderProducts);
+document.getElementById("sortSelect").addEventListener("change", renderProducts);
+
+/* =========================
+   CART
+========================= */
+function saveCart(){ localStorage.setItem("garma_cart", JSON.stringify(cart)); }
+
+function addToCart(id){
+    const item = cart.find(product => product.id === id);
+    if(item){ item.quantity++; }
+    else { cart.push({ id, quantity: 1 }); }
+    saveCart();
+    renderCart();
+    openCart();
+}
+
+function changeQuantity(id, amount){
+    const item = cart.find(product => product.id === id);
+    if(!item) return;
+    item.quantity += amount;
+    if(item.quantity <= 0){
+        cart = cart.filter(product => product.id !== id);
+    }
+    saveCart();
+    renderCart();
+}
+
+function renderCart(){
+    const container = document.getElementById("cartItems");
+    let total = 0;
+    let count = 0;
+
+    if(!cart.length){
+        container.innerHTML = `<div class="empty"><i class="fa-solid fa-basket-shopping" style="font-size:40px;margin-bottom:15px;display:block"></i>سبد خرید شما خالی است.</div>`;
+    } else {
+        container.innerHTML = cart.map(item => {
+            const product = products.find(p => p.id === item.id);
+            if(!product) return "";
+            total += product.price * item.quantity;
+            count += item.quantity;
+            return `
+                <div class="cart-item">
+                    <div class="cart-item-icon"><i class="fa-solid ${product.icon}"></i></div>
+                    <div class="cart-item-info">
+                        <strong>${product.name}</strong>
+                        <small>${money(product.price)}</small>
+                        <div class="quantity">
+                            <button onclick="changeQuantity(${product.id}, 1)">+</button>
+                            <span>${new Intl.NumberFormat("fa-IR").format(item.quantity)}</span>
+                            <button onclick="changeQuantity(${product.id}, -1)">−</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join("");
+    }
+    document.getElementById("cartCount").textContent = new Intl.NumberFormat("fa-IR").format(count);
+    document.getElementById("totalPrice").textContent = money(total);
+}
+
+/* =========================
+   CART DRAWER
+========================= */
+const drawer = document.getElementById("cartDrawer");
+const overlay = document.getElementById("overlay");
+
+function openCart(){
+    drawer.classList.add("show");
+    overlay.classList.add("show");
+    document.body.style.overflow = "hidden";
+}
+function closeCart(){
+    drawer.classList.remove("show");
+    overlay.classList.remove("show");
+    document.body.style.overflow = "";
+}
+document.getElementById("cartBtn").addEventListener("click", openCart);
+document.getElementById("closeCart").addEventListener("click", closeCart);
+overlay.addEventListener("click", closeCart);
+document.addEventListener("keydown", event => { if(event.key === "Escape") closeCart(); });
+
+/* =========================
+   THEME
+========================= */
+const themeBtn = document.getElementById("themeBtn");
+if(localStorage.getItem("garma_theme") === "light"){
+    document.body.classList.add("light");
+    themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+}
+themeBtn.addEventListener("click", () => {
+    document.body.classList.toggle("light");
+    const light = document.body.classList.contains("light");
+    localStorage.setItem("garma_theme", light ? "light" : "dark");
+    themeBtn.innerHTML = light ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+/* =========================
+   CHECKOUT
+========================= */
+function checkout(){
+    if(!cart.length){
+        alert("سبد خرید شما خالی است.");
+        return;
+    }
+    alert("سفارش شما با موفقیت ثبت شد! (شبیه‌سازی)");
+    cart = [];
+    saveCart();
+    renderCart();
+    closeCart();
+}
+
+/* =========================
+   INITIALIZE
+========================= */
+renderProducts();
+renderCart();
+</script>
+
+</body>
+</html>
