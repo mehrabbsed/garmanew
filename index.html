@@ -1055,7 +1055,25 @@ footer{ background:var(--surface); border-top:1px solid var(--border); padding:6
     .amazing{ padding:18px 14px; border-radius:22px; gap:14px; }
     .amazing-info h3{ font-size:15px; }
     .amazing-timer .timer-box{ padding:6px 7px; min-width:34px; font-size:13.5px; }
-    .amazing-product{ flex:0 0 calc((100% - 14px) / 2); padding:10px; }
+    
+    /* اسکرول افقی لمسی در ریسپانسیو */
+    .amazing-slider-wrap {
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 4px; /* فضا برای سایه */
+    }
+    .amazing-slider-wrap::-webkit-scrollbar { display: none; }
+    .amazing-track {
+        transform: none !important; /* غیرفعال کردن ترنسفورم دکمه‌ها */
+        transition: none;
+    }
+    .amazing-product{ 
+        flex:0 0 calc((100% - 14px) / 2); 
+        padding:10px; 
+        scroll-snap-align: start;
+    }
     .amazing-product .ap-image{ height:86px; }
     .amazing-product .ap-image i{ font-size:36px; }
     .amazing-product h4{ font-size:11.5px; }
@@ -1063,7 +1081,25 @@ footer{ background:var(--surface); border-top:1px solid var(--border); padding:6
 
     .bestsellers-header h2{ font-size:18px; }
     .bs-nav button{ width:36px; height:36px; font-size:13px; }
-    .bs-product{ flex:0 0 calc((100% - 16px) / 2); padding:12px; }
+    
+    /* اسکرول افقی لمسی در ریسپانسیو */
+    .bs-wrap {
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+        margin: 0 -4px; /* تصحیح لبه‌ها */
+    }
+    .bs-wrap::-webkit-scrollbar { display: none; }
+    .bs-track {
+        transform: none !important;
+        transition: none;
+    }
+    .bs-product{ 
+        flex:0 0 calc((100% - 16px) / 2); 
+        padding:12px; 
+        scroll-snap-align: start;
+    }
     .bs-image{ height:118px; }
     .bs-image i{ font-size:46px; }
     .bs-product h3{ font-size:12px; }
@@ -1181,7 +1217,7 @@ footer{ background:var(--surface); border-top:1px solid var(--border); padding:6
         <div class="vip-counter" aria-hidden="true">
             <strong id="vipCurrent">۱</strong>
             <span>/</span>
-            <span id="vipTotal">۳</span>
+            <span id="vipTotal">۲</span>
         </div>
     </div>
 </section>
